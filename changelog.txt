@@ -3,6 +3,12 @@ CHANGELOG - WEBSITE RESMI LEMBANG BATUALU SELATAN, TANA TORAJA
 Repositori: https://github.com/dog3n-tappy/website-batualu-selatan
 ================================================================================
 
+[v1.3.0] - 2026-10-27
+--------------------------------------------------------------------------------
+- Diperbarui:
+  * Pembaruan atribusi footer pada index.html menjadi:
+    "Dibuat oleh Donny Tappy" dan kontak "hubungi donny.tappy@gmail.com".
+
 [v1.2.0] - 2026-10-27
 --------------------------------------------------------------------------------
 - Ditambahkan:
