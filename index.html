@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lembang Batualu Selatan | Website Resmi Pemerintah Desa - Tana Toraja</title>
+  <meta name="description" content="Portal Pelayanan Publik dan Informasi Resmi Lembang Batualu Selatan, Kecamatan Sangalla Selatan, Kabupaten Tana Toraja. Layanan administrasi mandiri, APBD terbuka, dan pengaduan warga.">
+  
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            emerald: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+              950: '#022c22',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Chart.js for APBD Visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom Styles & Print Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-emerald-600 selection:text-white">
+
+  <!-- ======================================================================
+       HEADER NAVIGASI DENGAN LOGO DESA & TOGGLE TEMA
+       ====================================================================== -->
+  <header class="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo & Identitas Desa -->
+        <a href="#beranda" class="flex items-center gap-3.5 group">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-emerald-800 to-emerald-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform duration-200">
+            <i class="fas fa-landmark text-xl"></i>
+          </div>
+          <div>
+            <span class="block text-xs uppercase tracking-wider font-bold text-emerald-700 dark:text-emerald-400">Pemerintah Lembang</span>
+            <span class="block text-lg font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">Batualu Selatan</span>
+            <span class="block text-[11px] text-slate-500 dark:text-slate-400">Kec. Sangalla Selatan, Tana Toraja</span>
+          </div>
+        </a>
+
+        <!-- Menu Desktop -->
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="#beranda" class="px-3.5 py-2 text-sm font-semibold rounded-lg text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 transition">Beranda</a>
+          <a href="#profil" class="px-3.5 py-2 text-sm font-semibold rounded-lg text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 transition">Profil Desa</a>
+          <a href="#layanan" class="px-3.5 py-2 text-sm font-semibold rounded-lg text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 transition">Layanan Mandiri</a>
+          <a href="#apbd" class="px-3.5 py-2 text-sm font-semibold rounded-lg text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 transition">APBD Lembang</a>
+          <a href="#pengaduan" class="px-3.5 py-2 text-sm font-semibold rounded-lg text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 transition">Pengaduan Warga</a>
+        </nav>
+
+        <!-- Right Side: Dark Mode Toggle & Quick CTA -->
+        <div class="flex items-center gap-3">
+          <button id="themeToggleBtn" aria-label="Ganti Tema" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:ring-2 hover:ring-emerald-500 transition duration-150">
+            <i id="themeIcon" class="fas fa-moon text-slate-600 text-base"></i>
+          </button>
+
+          <a href="#layanan" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow-md shadow-emerald-600/30 transition-all duration-200 hover:shadow-lg">
+            <i class="fas fa-file-signature"></i>
+            <span>Urus Surat</span>
+          </a>
+
+          <!-- Mobile Hamburger Button -->
+          <button id="mobileMenuBtn" aria-label="Buka Menu" class="lg:hidden w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200 focus:outline-none">
+            <i class="fas fa-bars text-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigasi -->
+    <div id="mobileNav" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-3 pb-6 space-y-2 shadow-lg">
+      <a href="#beranda" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600"><i class="fas fa-home w-6 text-emerald-600"></i> Beranda</a>
+      <a href="#profil" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600"><i class="fas fa-info-circle w-6 text-emerald-600"></i> Profil Desa</a>
+      <a href="#layanan" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600"><i class="fas fa-file-alt w-6 text-emerald-600"></i> Layanan Mandiri</a>
+      <a href="#apbd" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600"><i class="fas fa-chart-pie w-6 text-emerald-600"></i> Transparansi APBD</a>
+      <a href="#pengaduan" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600"><i class="fas fa-bullhorn w-6 text-emerald-600"></i> Pusat Pengaduan Warga</a>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       SEKSI 1: BERANDA & HERO SECTION
+       ====================================================================== -->
+  <main class="flex-grow">
+    
+    <!-- Hero Section -->
+    <section id="beranda" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-gradient-to-b from-emerald-900 via-emerald-800 to-emerald-950 text-white">
+      <!-- Ornamen Dekoratif Latar Belakang -->
+      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px]"></div>
+      <div class="absolute -top-32 -right-32 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-700/60 border border-emerald-500/40 text-emerald-200 text-xs font-semibold backdrop-blur-md">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Portal Resmi Pelayanan Terpadu Lembang Batualu Selatan
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
+              Kearifan Budaya Toraja, <br>
+              <span class="text-emerald-300">Kemudahan Layanan Digital</span> untuk Semua Warga.
+            </h1>
+
+            <p class="text-slate-200 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light">
+              Selamat datang di website resmi Lembang Batualu Selatan, Kecamatan Sangalla Selatan, Kabupaten Tana Toraja. Kami hadir memberikan pelayanan administrasi yang cepat, transparan, dan terpercaya bagi seluruh masyarakat.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-3.5 justify-center lg:justify-start pt-2">
+              <a href="#layanan" class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm shadow-xl shadow-emerald-500/30 transition transform hover:-translate-y-0.5">
+                <i class="fas fa-file-invoice"></i>
+                <span>Pengajuan Surat Mandiri</span>
+              </a>
+              <a href="#pengaduan" class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm backdrop-blur-md transition">
+                <i class="fas fa-bullhorn text-emerald-300"></i>
+                <span>Lapor Pengaduan Warga</span>
+              </a>
+            </div>
+
+            <!-- Jam Pelayanan & Kontak Cepat -->
+            <div class="pt-6 border-t border-emerald-700/60 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs text-slate-300">
+              <div>
+                <p class="text-slate-400">Jam Pelayanan:</p>
+                <p class="font-semibold text-white">Senin - Jumat | 08.00 - 15.30 WITA</p>
+              </div>
+              <div>
+                <p class="text-slate-400">Hotline Kantor:</p>
+                <p class="font-semibold text-white">+62 812-4211-8899</p>
+              </div>
+              <div class="col-span-2 sm:col-span-1">
+                <p class="text-slate-400">Lokasi:</p>
+                <p class="font-semibold text-white">Sangalla Selatan, Tana Toraja</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Graphic Card / Visual Toraja Highlight -->
+          <div class="lg:col-span-5">
+            <div class="relative mx-auto max-w-md bg-white/10 dark:bg-slate-800/40 p-4 rounded-3xl border border-white/20 shadow-2xl backdrop-blur-lg">
+              <div class="overflow-hidden rounded-2xl h-64 relative group">
+                <img src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=900&q=80" alt="Panorama Alam Pegunungan dan Budaya Toraja" class="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5">
+                  <div>
+                    <span class="inline-block px-2.5 py-1 bg-emerald-600 text-white text-[10px] font-bold uppercase rounded-md tracking-wider mb-1">Kearifan Lokal</span>
+                    <h3 class="text-white font-bold text-base">Panorama Karst & Tongkonan Batualu</h3>
+                    <p class="text-slate-300 text-xs">Pusat kelestarian tradisi Sangalla Selatan yang asri dan sejuk.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Info Badge -->
+              <div class="mt-4 grid grid-cols-2 gap-3 text-center">
+                <div class="p-3 rounded-xl bg-white/10 dark:bg-slate-900/60 border border-white/10">
+                  <p class="text-xs text-emerald-300 font-semibold">Status Desa</p>
+                  <p class="text-sm font-bold text-white">Lembang Mandiri</p>
+                </div>
+                <div class="p-3 rounded-xl bg-white/10 dark:bg-slate-900/60 border border-white/10">
+                  <p class="text-xs text-emerald-300 font-semibold">Wilayah Kerja</p>
+                  <p class="text-sm font-bold text-white">3 Dusun Utama</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         RINGKASAN STATISTIK DEMOGRAFI PENDUDUK
+         ====================================================================== -->
+    <section id="statistik" class="relative -mt-10 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        
+        <!-- Total Warga -->
+        <div class="stat-card bg-white dark:bg-slate-800 p-5 sm:p-6 rounded-2xl shadow-xl border border-slate-200/80 dark:border-slate-700/80 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
+            <i class="fas fa-users"></i>
+          </div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Warga</p>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
+            <span class="counter-number" data-target="2845">0</span> <span class="text-sm font-normal text-slate-500">Jiwa</span>
+          </h3>
+          <p class="text-[11px] text-emerald-600 dark:text-emerald-400 mt-2 font-medium"><i class="fas fa-check-circle"></i> Data Dukcapil 2026</p>
+        </div>
+
+        <!-- Laki-laki -->
+        <div class="stat-card bg-white dark:bg-slate-800 p-5 sm:p-6 rounded-2xl shadow-xl border border-slate-200/80 dark:border-slate-700/80 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 flex items-center justify-center text-xl mb-4">
+            <i class="fas fa-mars"></i>
+          </div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Laki-Laki</p>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
+            <span class="counter-number" data-target="1420">0</span> <span class="text-sm font-normal text-slate-500">Jiwa</span>
+          </h3>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-2 font-medium">Proporsi 49.9%</p>
+        </div>
+
+        <!-- Perempuan -->
+        <div class="stat-card bg-white dark:bg-slate-800 p-5 sm:p-6 rounded-2xl shadow-xl border border-slate-200/80 dark:border-slate-700/80 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 flex items-center justify-center text-xl mb-4">
+            <i class="fas fa-venus"></i>
+          </div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Perempuan</p>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
+            <span class="counter-number" data-target="1425">0</span> <span class="text-sm font-normal text-slate-500">Jiwa</span>
+          </h3>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-2 font-medium">Proporsi 50.1%</p>
+        </div>
+
+        <!-- Kepala Keluarga -->
+        <div class="stat-card bg-white dark:bg-slate-800 p-5 sm:p-6 rounded-2xl shadow-xl border border-slate-200/80 dark:border-slate-700/80 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 flex items-center justify-center text-xl mb-4">
+            <i class="fas fa-home"></i>
+          </div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Kepala Keluarga</p>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
+            <span class="counter-number" data-target="762">0</span> <span class="text-sm font-normal text-slate-500">KK</span>
+          </h3>
+          <p class="text-[11px] text-amber-600 dark:text-amber-400 mt-2 font-medium">Tersebar di 3 Dusun</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         WARTA BERITA TERBARU & AGENDA DESA
+         ====================================================================== -->
+    <section class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+        <div>
+          <span class="text-emerald-700 dark:text-emerald-400 font-bold text-xs uppercase tracking-widest">Kabar & Informasi</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Berita Terbaru & Agenda Lembang</h2>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 md:mt-0 max-w-md">Ikuti perkembangan program pembangunan, kegiatan sosial, dan agenda kemasyarakatan di Batualu Selatan.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Kolom Berita Utama (8 Cols) -->
+        <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Berita 1 -->
+          <article class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col">
+            <div class="h-48 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=700&q=80" alt="Musyawarah Pembangunan Lembang Batualu Selatan" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+              <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-md">Pembangunan</span>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <p class="text-xs text-slate-400 mb-2"><i class="far fa-calendar-alt mr-1"></i> 24 Oktober 2026</p>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white hover:text-emerald-600 transition">
+                  Musyawarah Perencanaan Pembangunan Lembang (Musrenbanglem) Tahun Anggaran 2027
+                </h3>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 line-clamp-2">
+                  Pemerintah Lembang bersama BPD dan tokoh adat Tongkonan merumuskan skala prioritas pembangunan jalan rabat beton dan irigasi persawahan.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs">
+                <span class="text-slate-500">Oleh: Humas Lembang</span>
+                <span class="text-emerald-600 font-semibold cursor-pointer hover:underline">Selengkapnya &rarr;</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Berita 2 -->
+          <article class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col">
+            <div class="h-48 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=700&q=80" alt="Panen Kopi Arabika Toraja di Batualu" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+              <span class="absolute top-3 left-3 bg-amber-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-md">Ekonomi & Pertanian</span>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <p class="text-xs text-slate-400 mb-2"><i class="far fa-calendar-alt mr-1"></i> 18 Oktober 2026</p>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white hover:text-emerald-600 transition">
+                  Kelompok Tani Batualu Selatan Sukses Gelar Panen Raya Kopi Arabika Organik
+                </h3>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 line-clamp-2">
+                  Dukungan bibit unggul dan pelatihan pascapanen menghasilkan biji kopi berkualitas ekspor dengan nilai jual tinggi bagi petani lokal.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs">
+                <span class="text-slate-500">Oleh: Kaur Ekonomi</span>
+                <span class="text-emerald-600 font-semibold cursor-pointer hover:underline">Selengkapnya &rarr;</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Kolom Agenda Kegiatan Mendatang (4 Cols) -->
+        <div class="lg:col-span-4 bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-md">
+          <div class="flex items-center gap-2 mb-6 border-b border-slate-100 dark:border-slate-700 pb-3">
+            <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center text-sm">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white">Agenda Kegiatan Lembang</h3>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Agenda 1 -->
+            <div class="flex items-start gap-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 hover:bg-emerald-50/50 dark:hover:bg-slate-700/40 transition">
+              <div class="text-center px-3 py-2 rounded-lg bg-emerald-600 text-white min-w-[54px]">
+                <span class="block text-xs uppercase font-medium">Nov</span>
+                <span class="block text-lg font-extrabold leading-none">02</span>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-slate-900 dark:text-white">Posyandu Balita & Lansia Terpadu</h4>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5"><i class="far fa-clock"></i> 08.30 WITA | Aula Kantor Lembang</p>
+                <span class="inline-block mt-1 text-[10px] font-semibold text-emerald-600 bg-emerald-100 dark:bg-emerald-950/80 px-2 py-0.5 rounded">Kesehatan</span>
+              </div>
+            </div>
+
+            <!-- Agenda 2 -->
+            <div class="flex items-start gap-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 hover:bg-emerald-50/50 dark:hover:bg-slate-700/40 transition">
+              <div class="text-center px-3 py-2 rounded-lg bg-amber-600 text-white min-w-[54px]">
+                <span class="block text-xs uppercase font-medium">Nov</span>
+                <span class="block text-lg font-extrabold leading-none">07</span>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-slate-900 dark:text-white">Pelatihan Digitalisasi UMKM Kerajinan Bambu</h4>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5"><i class="far fa-clock"></i> 09.00 WITA | Gedung Serbaguna</p>
+                <span class="inline-block mt-1 text-[10px] font-semibold text-amber-600 bg-amber-100 dark:bg-amber-950/80 px-2 py-0.5 rounded">Pemberdayaan</span>
+              </div>
+            </div>
+
+            <!-- Agenda 3 -->
+            <div class="flex items-start gap-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 hover:bg-emerald-50/50 dark:hover:bg-slate-700/40 transition">
+              <div class="text-center px-3 py-2 rounded-lg bg-blue-600 text-white min-w-[54px]">
+                <span class="block text-xs uppercase font-medium">Nov</span>
+                <span class="block text-lg font-extrabold leading-none">12</span>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-slate-900 dark:text-white">Gotong Royong Siangkaran Pembersihan Saluran</h4>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5"><i class="far fa-clock"></i> 07.00 WITA | Dusun Batualu Selatan</p>
+                <span class="inline-block mt-1 text-[10px] font-semibold text-blue-600 bg-blue-100 dark:bg-blue-950/80 px-2 py-0.5 rounded">Kerja Bakti</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SEKSI 2: PROFIL DESA (SEJARAH, VISI-MISI, & STRUKTUR PEMERINTAHAN)
+         ====================================================================== -->
+    <section id="profil" class="py-16 md:py-24 bg-slate-100/70 dark:bg-slate-950/50 border-y border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-emerald-700 dark:text-emerald-400 font-bold text-xs uppercase tracking-widest">Mengenal Lebih Dekat</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Profil Lembang Batualu Selatan</h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Harmoni adat Toraja, kesuburan alam agraris, serta tata kelola pemerintahan yang melayani dengan integritas tinggi.</p>
+        </div>
+
+        <!-- Sejarah Singkat & Visi Misi -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start mb-16">
+          
+          <!-- Sejarah Singkat -->
+          <div class="lg:col-span-6 bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-md border border-slate-200 dark:border-slate-700/80">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 flex items-center justify-center text-lg">
+                <i class="fas fa-book-open"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white">Sejarah Singkat Lembang</h3>
+            </div>
+            
+            <div class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed space-y-3 font-light">
+              <p>
+                <strong>Lembang Batualu Selatan</strong> merupakan salah satu wilayah administratif pemekaran di Kecamatan Sangalla Selatan, Kabupaten Tana Toraja, Provinsi Sulawesi Selatan. Secara geografis, wilayah ini diapit oleh bentang perbukitan karst kapur dan hamparan persawahan bertingkat yang subur.
+              </p>
+              <p>
+                Nama <em>Batualu</em> berakar dari sejarah musyawarah para tetua adat delapan rumpun keluarga tongkonan besar yang bersatu (*Batu A'pa / A'lu*). Hingga kini, semangat persaudaraan dan gotong royong tradisional Toraja yang dikenal dengan sebutan <strong>"Siangkaran"</strong> tetap menjadi napas utama kehidupan sosial warga.
+              </p>
+              <p>
+                Dengan berkembangnya era digitalisasi, Batualu Selatan terus berbenah menghadirkan pelayanan publik modern tanpa mengikis sedikit pun kearifan adat leluhur Tallu Lembangna.
+              </p>
+            </div>
+          </div>
+
+          <!-- Visi & Misi -->
+          <div class="lg:col-span-6 space-y-6">
+            
+            <!-- Kotak Visi -->
+            <div class="bg-gradient-to-br from-emerald-800 to-emerald-950 text-white p-7 rounded-2xl shadow-lg border border-emerald-700">
+              <span class="text-emerald-300 text-xs uppercase font-extrabold tracking-wider">Visi Pembangunan 2024 - 2029</span>
+              <p class="text-lg md:text-xl font-bold mt-2 italic leading-snug">
+                "Terwujudnya Lembang Batualu Selatan yang Mandiri, Sejahtera, Transparan, dan Berdaya Saing Berlandaskan Nilai Luhur Budaya Toraja."
+              </p>
+            </div>
+
+            <!-- Kotak Misi -->
+            <div class="bg-white dark:bg-slate-800 p-7 rounded-2xl shadow-md border border-slate-200 dark:border-slate-700/80">
+              <h4 class="text-base font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                <i class="fas fa-bullseye text-emerald-600"></i> Misi Utama Lembang:
+              </h4>
+              <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2.5">
+                  <i class="fas fa-check text-emerald-500 mt-1"></i>
+                  <span>Mewujudkan tata kelola pemerintahan lembang yang bersih, akuntabel, dan berbasis teknologi digital.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i class="fas fa-check text-emerald-500 mt-1"></i>
+                  <span>Meningkatkan infrastruktur dasar perdesaan, jalan usaha tani, dan konektivitas antardusun secara merata.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i class="fas fa-check text-emerald-500 mt-1"></i>
+                  <span>Mengembangkan ekonomi kerakyatan melalui optimalisasi komoditas kopi, peternakan, dan UMKM kreatif.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i class="fas fa-check text-emerald-500 mt-1"></i>
+                  <span>Melestarikan kelestarian alam dan nilai-nilai adat Toraja dalam membina kerukunan sosial kemasyarakatan.</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Bagan & Struktur Organisasi Pemerintahan Desa -->
+        <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700/80 shadow-md">
+          <div class="text-center max-w-2xl mx-auto mb-10">
+            <span class="text-emerald-700 dark:text-emerald-400 font-bold text-xs uppercase tracking-widest">Aparatur Lembang</span>
+            <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white mt-1">Struktur Organisasi Pemerintahan Lembang</h3>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Perangkat pelayan masyarakat yang berdedikasi melayani warga Batualu Selatan.</p>
+          </div>
+
+          <!-- Pucuk Pimpinan (Kepala Lembang) -->
+          <div class="flex justify-center mb-8">
+            <div class="text-center bg-gradient-to-b from-emerald-50 to-emerald-100/50 dark:from-slate-700 dark:to-slate-800 p-6 rounded-2xl border-2 border-emerald-500 shadow-lg max-w-xs w-full">
+              <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-emerald-700 text-white flex items-center justify-center text-3xl shadow-md border-2 border-white dark:border-slate-700 overflow-hidden">
+                <i class="fas fa-user-tie"></i>
+              </div>
+              <span class="px-3 py-1 bg-emerald-600 text-white text-[10px] font-bold uppercase rounded-full tracking-wider">Kepala Lembang</span>
+              <h4 class="text-base font-bold text-slate-900 dark:text-white mt-2">Pradyan Rizky Londong Allo</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Periode 2024 - 2030</p>
+            </div>
+          </div>
+
+          <!-- Garis Penghubung Visual -->
+          <div class="hidden md:flex justify-center mb-8">
+            <div class="w-1 h-6 bg-slate-300 dark:bg-slate-600"></div>
+          </div>
+
+          <!-- Jajaran Sekretaris & Kepala Urusan / Seksi -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            
+            <!-- Sekretaris -->
+            <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
+              <div class="w-14 h-14 rounded-full mx-auto mb-2 bg-emerald-800/80 text-white flex items-center justify-center text-xl">
+                <i class="fas fa-id-badge"></i>
+              </div>
+              <span class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase">Sekretaris Lembang</span>
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-1">Markus Sombo, S.Sos</h4>
+              <p class="text-[11px] text-slate-500">Administrasi Umum</p>
+            </div>
+
+            <!-- Kaur Keuangan -->
+            <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
+              <div class="w-14 h-14 rounded-full mx-auto mb-2 bg-emerald-800/80 text-white flex items-center justify-center text-xl">
+                <i class="fas fa-wallet"></i>
+              </div>
+              <span class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase">Kaur Keuangan</span>
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-1">Yuliana Rante, S.E</h4>
+              <p class="text-[11px] text-slate-500">Pengelolaan APBD</p>
+            </div>
+
+            <!-- Kasi Pemerintahan -->
+            <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
+              <div class="w-14 h-14 rounded-full mx-auto mb-2 bg-emerald-800/80 text-white flex items-center justify-center text-xl">
+                <i class="fas fa-building-user"></i>
+              </div>
+              <span class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase">Kasi Pemerintahan</span>
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-1">Martha Lembang</h4>
+              <p class="text-[11px] text-slate-500">Layanan Kependudukan</p>
+            </div>
+
+            <!-- Kasi Kesejahteraan -->
+            <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
+              <div class="w-14 h-14 rounded-full mx-auto mb-2 bg-emerald-800/80 text-white flex items-center justify-center text-xl">
+                <i class="fas fa-hand-holding-heart"></i>
+              </div>
+              <span class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase">Kasi Kesejahteraan</span>
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-1">Paulus Tangke</h4>
+              <p class="text-[11px] text-slate-500">Sosial & Bansos</p>
+            </div>
+
+          </div>
+
+          <!-- Kepala Dusun (Wilayah Kerja) -->
+          <div class="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+            <h5 class="text-xs font-bold uppercase tracking-wider text-slate-500 text-center mb-4">Kepala Wilayah Kewilayahan / Dusun</h5>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center text-xs">
+              <div class="p-3 rounded-lg bg-emerald-50 dark:bg-slate-900/40 border border-emerald-200 dark:border-slate-700">
+                <p class="font-bold text-slate-800 dark:text-slate-200">Dusun Batualu Utara</p>
+                <p class="text-slate-500">Bpk. Joni Palimbong</p>
+              </div>
+              <div class="p-3 rounded-lg bg-emerald-50 dark:bg-slate-900/40 border border-emerald-200 dark:border-slate-700">
+                <p class="font-bold text-slate-800 dark:text-slate-200">Dusun Batualu Selatan</p>
+                <p class="text-slate-500">Bpk. Simon Toding</p>
+              </div>
+              <div class="p-3 rounded-lg bg-emerald-50 dark:bg-slate-900/40 border border-emerald-200 dark:border-slate-700">
+                <p class="font-bold text-slate-800 dark:text-slate-200">Dusun Tondok Batu</p>
+                <p class="text-slate-500">Bpk. Yohanis Sampe</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SEKSI 3: LAYANAN ADMINISTRASI MANDIRI (SURAT ONLINE & CETAK)
+         ====================================================================== -->
+    <section id="layanan" class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-emerald-700 dark:text-emerald-400 font-bold text-xs uppercase tracking-widest">Pelayanan Cepat & Mandiri</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Layanan Administrasi Surat Digital</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">
+          Ajukan permohonan surat keterangan dari rumah tanpa antre. Formulir diverifikasi secara otomatis dengan generator lembar surat berkop resmi yang siap dicetak langsung.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        
+        <!-- Sisi Kiri: Petunjuk Persyaratan Dokumen -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="bg-gradient-to-tr from-emerald-800 to-emerald-950 text-white p-7 rounded-3xl shadow-xl">
+            <h3 class="text-lg font-bold flex items-center gap-2 mb-3">
+              <i class="fas fa-circle-info text-emerald-300"></i> Syarat & Ketentuan Pengajuan
+            </h3>
+            <p class="text-xs text-emerald-100 leading-relaxed mb-4">
+              Sebelum mengisi formulir, pastikan Anda telah menyiapkan data dan berkas foto/scan pendukung berikut:
+            </p>
+
+            <div class="space-y-3 text-xs">
+              <div class="flex items-start gap-3 bg-white/10 p-3 rounded-xl border border-white/10">
+                <i class="fas fa-address-card text-emerald-300 text-base mt-0.5"></i>
+                <div>
+                  <p class="font-semibold text-white">1. KTP Elektronik & Kartu Keluarga</p>
+                  <p class="text-slate-200 text-[11px]">Warga tercatat aktif di wilayah Lembang Batualu Selatan.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 bg-white/10 p-3 rounded-xl border border-white/10">
+                <i class="fab fa-whatsapp text-emerald-300 text-base mt-0.5"></i>
+                <div>
+                  <p class="font-semibold text-white">2. Nomor WhatsApp Aktif</p>
+                  <p class="text-slate-200 text-[11px]">Digunakan untuk notifikasi status verifikasi surat.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 bg-white/10 p-3 rounded-xl border border-white/10">
+                <i class="fas fa-print text-emerald-300 text-base mt-0.5"></i>
+                <div>
+                  <p class="font-semibold text-white">3. Pratinjau & Cetak Mandiri</p>
+                  <p class="text-slate-200 text-[11px]">Setelah formulir dikirim, sistem langsung menampilkan draf surat resmi siap cetak / PDF.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-5 border-t border-emerald-700/60 text-[11px] text-emerald-200 flex items-center gap-2">
+              <i class="fas fa-shield-alt text-emerald-400"></i>
+              <span>Data kependudukan dilindungi dan dijamin kerahasiaannya.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sisi Kanan: Formulir Interaktif Pengajuan Surat -->
+        <div class="lg:col-span-7 bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-xl">
+          <form id="letterRequestForm" class="space-y-5">
+            
+            <!-- Jenis Surat -->
+            <div>
+              <label for="jenisSurat" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                Pilih Jenis Surat <span class="text-red-500">*</span>
+              </label>
+              <select id="jenisSurat" required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                <option value="">-- Pilih Jenis Layanan Surat --</option>
+                <option value="SKU">Surat Keterangan Usaha (SKU)</option>
+                <option value="SKD">Surat Keterangan Domisili (SKD)</option>
+                <option value="SPN">Surat Pengantar Nikah (Model N1-N4)</option>
+                <option value="SKTM">Surat Keterangan Tidak Mampu (SKTM)</option>
+              </select>
+            </div>
+
+            <!-- Nama Lengkap & NIK -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="namaLengkap" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                  Nama Lengkap (Sesuai KTP) <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="namaLengkap" required placeholder="Contoh: Yulius Pasolang" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+              </div>
+
+              <div>
+                <label for="nik" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                  Nomor Induk Kependudukan (NIK) <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="nik" required maxlength="16" placeholder="16 Digit Angka NIK" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition font-mono">
+              </div>
+            </div>
+
+            <!-- WhatsApp & Berkas -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="whatsapp" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                  Nomor WhatsApp Aktif <span class="text-red-500">*</span>
+                </label>
+                <input type="tel" id="whatsapp" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+              </div>
+
+              <div>
+                <label for="berkasPendukung" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                  Unggah Berkas KTP/KK (PDF/JPG)
+                </label>
+                <input type="file" id="berkasPendukung" accept=".pdf,.jpg,.jpeg,.png" class="w-full px-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs focus:outline-none file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-100 dark:file:bg-emerald-950 file:text-emerald-700 dark:file:text-emerald-300 hover:file:bg-emerald-200">
+              </div>
+            </div>
+
+            <!-- Keperluan Surat -->
+            <div>
+              <label for="keperluanSurat" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                Tujuan / Keperluan Surat
+              </label>
+              <textarea id="keperluanSurat" rows="3" placeholder="Contoh: Pengajuan pinjaman KUR Bank / Kelengkapan berkas pernikahan / Beasiswa kuliah" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition"></textarea>
+            </div>
+
+            <!-- Tombol Kirim -->
+            <button type="submit" class="w-full py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition duration-200 flex items-center justify-center gap-2">
+              <i class="fas fa-file-check text-base"></i>
+              <span>Kirim Permohonan & Buka Pratinjau Surat</span>
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         MODAL PRATINJAU LEMBAR SURAT RESMI CETAK (POP-UP)
+         ====================================================================== -->
+    <div id="letterModal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm items-center justify-center p-4 overflow-y-auto">
+      <div class="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden my-8">
+        
+        <!-- Header Bar Modal (No-Print) -->
+        <div class="no-print bg-slate-900 text-white px-6 py-4 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i class="fas fa-file-invoice text-emerald-400"></i>
+            <h4 class="font-bold text-sm">Pratinjau Surat Resmi Lembang Batualu Selatan</h4>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="printLetterBtn" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg flex items-center gap-2 transition shadow">
+              <i class="fas fa-print"></i> Cetak / Simpan PDF
+            </button>
+            <button id="closeLetterModalBtn" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center text-sm transition">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Area Kertas Cetak Surat (Letter Printable Area) -->
+        <div id="printableArea" class="p-8 sm:p-12 text-slate-900 bg-white min-h-[500px]">
+          <!-- Konten di-generate secara dinamis oleh js/app.js -->
+        </div>
+
+        <!-- Footer Modal (No-Print) -->
+        <div class="no-print bg-slate-100 border-t border-slate-200 px-6 py-3 flex items-center justify-between text-xs text-slate-500">
+          <span>* Lembar ini memiliki validasi nomor registrasi resmi dari database Lembang Batualu Selatan.</span>
+          <span class="font-semibold text-emerald-700">Format Resmi Standar Pemkab Tana Toraja</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         SEKSI 4: TRANSPARANSI ANGGARAN APBD DESA 2026
+         ====================================================================== -->
+    <section id="apbd" class="py-16 md:py-24 bg-slate-100/70 dark:bg-slate-950/50 border-t border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-emerald-700 dark:text-emerald-400 font-bold text-xs uppercase tracking-widest">Akuntabilitas Publik</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Transparansi APBD Lembang Tahun 2026</h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">
+            Wujud komitmen keterbukaan informasi publik dalam pemanfaatan Dana Desa (DDS), Alokasi Dana Lembang (ADL), dan Bagi Hasil Pajak demi kemakmuran warga.
+          </p>
+        </div>
+
+        <!-- Ringkasan Angka APBD Total -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+          
+          <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-md">
+            <span class="text-xs uppercase font-bold text-slate-400">Total Pendapatan Lembang</span>
+            <h3 class="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-1">Rp 1.505.000.000</h3>
+            <p class="text-xs text-slate-500 mt-1">DDS, ADD & Bagi Hasil Retribusi Daerah</p>
+          </div>
+
+          <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-md">
+            <span class="text-xs uppercase font-bold text-slate-400">Total Belanja Lembang</span>
+            <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white mt-1">Rp 1.505.000.000</h3>
+            <p class="text-xs text-emerald-600 mt-1"><i class="fas fa-check-circle"></i> Anggaran Berimbang (Defisit 0%)</p>
+          </div>
+
+          <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-md">
+            <span class="text-xs uppercase font-bold text-slate-400">Realisasi Fisik & Finansial</span>
+            <h3 class="text-2xl font-extrabold text-blue-600 dark:text-blue-400 mt-1">84.5%</h3>
+            <p class="text-xs text-slate-500 mt-1">Evaluasi Triwulan III Berjalan</p>
+          </div>
+
+        </div>
+
+        <!-- Grafik & Tabel Alokasi -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Visualisasi Donat Grafik Chart.js -->
+          <div class="lg:col-span-5 bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-xl flex flex-col items-center">
+            <h4 class="text-base font-bold text-slate-900 dark:text-white mb-4 text-center">Persentase Alokasi Bidang Belanja</h4>
+            <div class="relative w-full h-72">
+              <canvas id="apbdChart"></canvas>
+            </div>
+            <p class="text-[11px] text-slate-400 text-center mt-4">Arahkan kursor / sentuh potongan donat untuk melihat detail nominal.</p>
+          </div>
+
+          <!-- Tabel Rincian Anggaran Responsif -->
+          <div class="lg:col-span-7 bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-xl">
+            <div class="flex items-center justify-between mb-4">
+              <h4 class="text-base font-bold text-slate-900 dark:text-white">Rincian Alokasi Per Bidang</h4>
+              <span class="text-xs text-emerald-600 font-semibold bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full">Perdes No. 03/2026</span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs sm:text-sm">
+                <thead>
+                  <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 uppercase tracking-wider text-[11px]">
+                    <th class="py-3 px-2">Bidang Penggunaan</th>
+                    <th class="py-3 px-2 text-right">Alokasi (Rp)</th>
+                    <th class="py-3 px-2 text-center">Porsi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30">
+                    <td class="py-3.5 px-2 font-medium">
+                      <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 mr-2"></span>
+                      Pelaksanaan Pembangunan Lembang
+                    </td>
+                    <td class="py-3.5 px-2 text-right font-mono font-semibold">650.000.000</td>
+                    <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">43.2%</span></td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30">
+                    <td class="py-3.5 px-2 font-medium">
+                      <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 mr-2"></span>
+                      Penyelenggaraan Pemerintahan
+                    </td>
+                    <td class="py-3.5 px-2 text-right font-mono font-semibold">450.000.000</td>
+                    <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">29.9%</span></td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30">
+                    <td class="py-3.5 px-2 font-medium">
+                      <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-600 mr-2"></span>
+                      Pembinaan Kemasyarakatan
+                    </td>
+                    <td class="py-3.5 px-2 text-right font-mono font-semibold">180.000.000</td>
+                    <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300">12.0%</span></td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30">
+                    <td class="py-3.5 px-2 font-medium">
+                      <span class="inline-block w-2.5 h-2.5 rounded-full bg-sky-600 mr-2"></span>
+                      Pemberdayaan Masyarakat
+                    </td>
+                    <td class="py-3.5 px-2 text-right font-mono font-semibold">150.000.000</td>
+                    <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300">10.0%</span></td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30">
+                    <td class="py-3.5 px-2 font-medium">
+                      <span class="inline-block w-2.5 h-2.5 rounded-full bg-red-600 mr-2"></span>
+                      Penanggulangan Bencana & Mendesak
+                    </td>
+                    <td class="py-3.5 px-2 text-right font-mono font-semibold">75.000.000</td>
+                    <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300">5.0%</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
+              <span>* Data diperbarui berkala sesuai SPJ Lembang Batualu Selatan.</span>
+              <a href="#apbd" class="inline-flex items-center gap-1.5 font-semibold text-emerald-600 hover:underline">
+                <i class="fas fa-file-pdf"></i> Unduh Laporan Infografis APBD PDF
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SEKSI 5: PUSAT PENGADUAN WARGA & PELACAK TIKET
+         ====================================================================== -->
+    <section id="pengaduan" class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-emerald-700 dark:text-emerald-400 font-bold text-xs uppercase tracking-widest">Suara Warga</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Pusat Pengaduan & Aspirasi Warga</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">
+          Laporkan permasalahan jalan rusak, bantuan sosial, atau pelayanan umum. Dapatkan nomor tiket resmi untuk melacak proses tindak lanjut aparatur desa secara langsung.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        
+        <!-- Formulir Kirim Pengaduan (7 Cols) -->
+        <div class="lg:col-span-7 bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-xl">
+          <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-700">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center text-lg">
+              <i class="fas fa-bullhorn"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">Formulir Laporan Pengaduan</h3>
+              <p class="text-xs text-slate-500">Isi data laporan dengan jelas dan objektif.</p>
+            </div>
+          </div>
+
+          <form id="complaintForm" class="space-y-4">
+            
+            <!-- Opsi Anonim -->
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+              <div>
+                <label for="anonymousToggle" class="text-xs font-bold text-slate-800 dark:text-slate-200 cursor-pointer">Laporkan Secara Anonim (Rahasiakan Nama)</label>
+                <p class="text-[11px] text-slate-500">Nama Anda tidak akan ditampilkan di arsip publik.</p>
+              </div>
+              <input type="checkbox" id="anonymousToggle" class="w-5 h-5 text-emerald-600 rounded focus:ring-emerald-500 cursor-pointer">
+            </div>
+
+            <!-- Nama Pelapor & Kategori -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="pelaporName" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                  Nama Pelapor
+                </label>
+                <input type="text" id="pelaporName" placeholder="Nama Lengkap Anda" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+              </div>
+
+              <div>
+                <label for="complaintCategory" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                  Kategori Pengaduan <span class="text-red-500">*</span>
+                </label>
+                <select id="complaintCategory" required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                  <option value="Infrastruktur Jalan & Jembatan">Infrastruktur Jalan & Jembatan</option>
+                  <option value="Pelayanan Administrasi Desa">Pelayanan Administrasi Lembang</option>
+                  <option value="Bantuan Sosial & PKH">Bantuan Sosial & PKH</option>
+                  <option value="Keamanan & Ketertiban">Keamanan, Kebersihan & Lingkungan</option>
+                  <option value="Lainnya">Lain-lain / Aspirasi Umum</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Judul Pengaduan -->
+            <div>
+              <label for="complaintTitle" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                Judul Laporan <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="complaintTitle" required placeholder="Contoh: Lampu Penerangan Jalan Dusun Batualu Mati" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+            </div>
+
+            <!-- Isi Laporan -->
+            <div>
+              <label for="complaintDescription" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                Rincian & Lokasi Kejadian <span class="text-red-500">*</span>
+              </label>
+              <textarea id="complaintDescription" rows="4" required placeholder="Jelaskan secara detail permasalahan dan patokan lokasi agar petugas mudah menindaklanjuti..." class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition duration-200 flex items-center justify-center gap-2">
+              <i class="fas fa-paper-plane"></i>
+              <span>Kirimkan Laporan & Ambil Tiket</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Pelacak Status Tiket Pengaduan (5 Cols) -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-xl">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 flex items-center justify-center text-lg">
+                <i class="fas fa-search-location"></i>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">Lacak Status Pengaduan</h3>
+                <p class="text-xs text-slate-500">Masukkan nomor tiket laporan Anda.</p>
+              </div>
+            </div>
+
+            <!-- Form Cek Tiket -->
+            <form id="checkTicketForm" class="space-y-3">
+              <div class="relative">
+                <input type="text" id="searchTicketNumber" placeholder="Contoh: LBS-2026-8492" class="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white text-sm font-mono focus:ring-2 focus:ring-emerald-500 focus:outline-none transition uppercase">
+                <i class="fas fa-ticket-alt absolute left-3.5 top-3.5 text-slate-400"></i>
+              </div>
+
+              <button type="submit" class="w-full py-3 rounded-xl bg-slate-900 dark:bg-slate-700 hover:bg-slate-800 text-white font-semibold text-xs tracking-wider uppercase transition">
+                Cek Perkembangan Tiket
+              </button>
+            </form>
+
+            <!-- Box Hasil Pelacakan -->
+            <div id="ticketResultBox" class="mt-6 hidden">
+              <!-- Hasil status inject dari js/app.js -->
+            </div>
+
+            <!-- Sampel Tiket Cepat untuk Demo -->
+            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700">
+              <p class="text-[11px] text-slate-400 mb-2 font-medium">Tips Uji Coba Pengaduan:</p>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Kirimkan pengaduan melalui form di sebelah kiri untuk menghasilkan tiket otomatis, atau ketik tiket yang tersimpan untuk melihat lini masa tindak lanjut secara langsung.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================
+       FOOTER WEBSITE RESMI
+       ====================================================================== -->
+  <footer class="bg-slate-950 text-slate-300 border-t border-slate-800 pt-16 pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800 text-sm">
+        
+        <!-- Kolom 1: Profil Singkat -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg">
+              <i class="fas fa-landmark"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-white leading-tight">Lembang Batualu Selatan</h4>
+              <p class="text-xs text-emerald-400">Tana Toraja, Sulawesi Selatan</p>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed font-light">
+            Portal digital resmi Pemerintah Lembang Batualu Selatan untuk mewujudkan pelayanan publik mandiri, berkeadilan, dan transparan bagi seluruh warga.
+          </p>
+        </div>
+
+        <!-- Kolom 2: Tautan Cepat -->
+        <div>
+          <h4 class="font-bold text-white text-sm uppercase tracking-wider mb-4 border-l-2 border-emerald-500 pl-3">Navigasi Utama</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#beranda" class="hover:text-emerald-400 transition">Beranda Utama</a></li>
+            <li><a href="#profil" class="hover:text-emerald-400 transition">Sejarah & Visi Misi Desa</a></li>
+            <li><a href="#layanan" class="hover:text-emerald-400 transition">Layanan Pengajuan Surat</a></li>
+            <li><a href="#apbd" class="hover:text-emerald-400 transition">Transparansi Dana Desa (APBD)</a></li>
+            <li><a href="#pengaduan" class="hover:text-emerald-400 transition">Pengaduan & Aspirasi Warga</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 3: Kontak & Pelayanan -->
+        <div>
+          <h4 class="font-bold text-white text-sm uppercase tracking-wider mb-4 border-l-2 border-emerald-500 pl-3">Kontak & Layanan</h4>
+          <ul class="space-y-2.5 text-xs text-slate-400">
+            <li class="flex items-start gap-2.5">
+              <i class="fas fa-map-marker-alt text-emerald-400 mt-1"></i>
+              <span>Jl. Poros Batualu, Kec. Sangalla Selatan, Kab. Tana Toraja, Sulsel 91881</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i class="fas fa-envelope text-emerald-400"></i>
+              <span>batualuselatan@tanatorajakab.go.id</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i class="fab fa-whatsapp text-emerald-400"></i>
+              <span>+62 812-4211-8899 (WhatsApp Desa)</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i class="far fa-clock text-emerald-400"></i>
+              <span>Senin - Jumat: 08.00 - 15.30 WITA</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Kolom 4: Media Sosial & Keamanan -->
+        <div>
+          <h4 class="font-bold text-white text-sm uppercase tracking-wider mb-4 border-l-2 border-emerald-500 pl-3">Media Sosial Desa</h4>
+          <p class="text-xs text-slate-400 mb-4">Terhubung dengan berita dan dokumentasi kegiatan masyarakat secara langsung:</p>
+          <div class="flex gap-2">
+            <a href="#" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-emerald-600 transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-emerald-600 transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-emerald-600 transition"><i class="fab fa-youtube"></i></a>
+          </div>
+          <div class="mt-6 p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400">
+            <i class="fas fa-check-double text-emerald-400 mr-1"></i> Terenkripsi & Responsif di Seluler
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hak Cipta -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>&copy; 2026 Pemerintah Lembang Batualu Selatan, Tana Toraja. Hak Cipta Dilindungi.</p>
+        <p class="flex items-center gap-1.5">
+          <span>Dibuat dengan</span>
+          <i class="fas fa-heart text-rose-500"></i>
+          <span>untuk masyarakat Tana Toraja</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Aplikasi -->
+  <script src="js/app.js"></script>
+</body>
+</html>

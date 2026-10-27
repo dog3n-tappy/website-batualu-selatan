@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Website Resmi Lembang Batualu Selatan, Tana Toraja
+   Kustomisasi Visual, Efek Khusus & Aturan Cetak Surat
+   ========================================================================== */
+
+/* Font import */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary-emerald: #059669;
+  --primary-dark: #064e3b;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* Pola Ukiran Khas Toraja (Pa'ssura Subtle Pattern Accent) */
+.toraja-pattern {
+  background-color: #065f46;
+  background-image: radial-gradient(#10b981 0.75px, transparent 0.75px), radial-gradient(#10b981 0.75px, #065f46 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+.dark .toraja-pattern {
+  background-color: #064e3b;
+  background-image: radial-gradient(#059669 0.75px, transparent 0.75px), radial-gradient(#059669 0.75px, #064e3b 0.75px);
+}
+
+/* Transisi Halus untuk Perubahan Tema */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #10b981;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #059669;
+}
+
+/* Kartu Statistik Animasi */
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ==========================================================================
+   ATURAN CETAK (PRINT STYLESHEET) UNTUK SURAT RESMI
+   ========================================================================== */
+@media print {
+  /* Sembunyikan semua elemen kecuali modal pratinjau surat */
+  body * {
+    visibility: hidden;
+  }
+  
+  #letterModal,
+  #letterModal #printableArea,
+  #letterModal #printableArea * {
+    visibility: visible;
+  }
+
+  #letterModal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: white !important;
+    color: black !important;
+  }
+
+  #printableArea {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 20mm;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Sembunyikan tombol aksi pada saat cetak */
+  .no-print {
+    display: none !important;
+  }
+}
