@@ -1,0 +1,41 @@
+================================================================================
+CHANGELOG - WEBSITE RESMI LEMBANG BATUALU SELATAN, TANA TORAJA
+Repositori: https://github.com/dog3n-tappy/website-batualu-selatan
+================================================================================
+
+[v1.2.0] - 2026-10-27
+--------------------------------------------------------------------------------
+- Ditambahkan:
+  * File changelog.txt untuk pelacakan dan dokumentasi riwayat pembaruan proyek.
+- Pemeliharaan:
+  * Standarisasi format pencatatan setiap perubahan sebelum push ke GitHub.
+
+[v1.1.0] - 2026-10-27
+--------------------------------------------------------------------------------
+- Ditambahkan:
+  * Fitur latar belakang video sinematik (hero video background) di seksi Beranda
+    menggunakan footage rumah adat Toraja (assets/videos/hero-toraja.mp4).
+  * Lapisan overlay ganda (emerald-slate gradient & pattern Toraja) untuk menjaga
+    kontras dan keterbacaan teks headline.
+  * Kartu video interaktif mini-player dengan status live visual pesona budaya.
+  * Tombol kontrol interaktif putar/jeda video (toggleHeroVideoBtn).
+  * Fungsi initHeroVideo() di js/app.js dengan fallback autoplay peramban seluler.
+- Diperbarui:
+  * Nama Kepala Lembang resmi disesuaikan menjadi "Pradyan Rizky Londong Allo"
+    pada bagan struktur organisasi di index.html dan template cetak surat di js/app.js.
+
+[v1.0.0] - 2026-10-27
+--------------------------------------------------------------------------------
+- Rilis Awal:
+  * Arsitektur web modern terpisah: HTML5, Tailwind CSS, Vanilla JavaScript, Chart.js.
+  * Header navigasi responsif dengan toggle mode gelap/terang (Dark/Light Mode).
+  * Seksi Beranda: Hero selamat datang, informasi layanan, dan tombol aksi cepat.
+  * Seksi Statistik: Counter animasi demografi warga (Total, Pria, Wanita, KK).
+  * Seksi Berita & Agenda: Warta pembangunan desa dan kalender kegiatan terdekat.
+  * Seksi Profil Desa: Sejarah Batualu, Visi-Misi, dan struktur aparatur desa.
+  * Seksi Layanan Mandiri: Formulir permohonan surat (SKU, SKD, Pengantar Nikah, SKTM)
+    dilengkapi generator surat cetak resmi berkop desa, stempel digital, dan QR code (@media print).
+  * Seksi Transparansi APBD: Grafik donat Chart.js dan tabel alokasi dana berimbang Rp 1,505 M.
+  * Seksi Pengaduan Warga: Formulir pelaporan (opsi anonim), generator tiket acak
+    (#LBS-2026-XXXX), dan pelacak status proses pengaduan interaktif via localStorage.
+  * Berkas pendukung: README.md dan .gitignore.
