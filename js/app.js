@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initApbdChart();
   initComplaintSystem();
   initSmoothScroll();
+  initHeroVideo();
 });
 
 /* ==========================================================================
@@ -535,4 +536,51 @@ function initComplaintSystem() {
       `;
     }
   }
+}
+
+
+/* ==========================================================================
+   7. KONTROL VIDEO HERO BACKGROUND SINEMATIK
+   ========================================================================== */
+function initHeroVideo() {
+  const bgVideo = document.getElementById('heroVideo');
+  const miniVideo = document.getElementById('heroMiniVideo');
+  const toggleBtn = document.getElementById('toggleHeroVideoBtn');
+  const toggleIcon = document.getElementById('toggleHeroVideoIcon');
+  const toggleText = document.getElementById('toggleHeroVideoText');
+
+  if (!bgVideo || !toggleBtn) return;
+
+  // Pastikan autoplay berjalan lancar di semua peramban
+  const ensurePlay = () => {
+    if (bgVideo.paused) {
+      bgVideo.play().catch(() => {});
+    }
+    if (miniVideo && miniVideo.paused) {
+      miniVideo.play().catch(() => {});
+    }
+  };
+  
+  ensurePlay();
+  window.addEventListener('touchstart', ensurePlay, { once: true });
+  window.addEventListener('click', ensurePlay, { once: true });
+
+  let isPlaying = true;
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (isPlaying) {
+      bgVideo.pause();
+      if (miniVideo) miniVideo.pause();
+      if (toggleIcon) toggleIcon.className = 'fas fa-play text-[11px] text-emerald-400';
+      if (toggleText) toggleText.innerText = 'Putar Video';
+      isPlaying = false;
+    } else {
+      bgVideo.play().catch(() => {});
+      if (miniVideo) miniVideo.play().catch(() => {});
+      if (toggleIcon) toggleIcon.className = 'fas fa-pause text-[11px] text-emerald-400';
+      if (toggleText) toggleText.innerText = 'Jeda Video';
+      isPlaying = true;
+    }
+  });
 }
