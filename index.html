@@ -108,15 +108,15 @@
        ====================================================================== -->
   <main class="flex-grow">
     
-    <!-- Hero Section dengan Background Video Sinematik -->
+    <!-- Hero Section dengan Background Image Carousel -->
     <section id="beranda" class="relative overflow-hidden min-h-[660px] flex items-center pt-16 pb-24 lg:pt-24 lg:pb-32 text-white bg-slate-950">
       
-      <!-- Video Background Layar Penuh -->
-      <video id="heroVideo" autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 filter brightness-[0.42] contrast-[1.1] scale-105 pointer-events-none transition-all duration-700">
-        <source src="assets/videos/hero-toraja.mp4" type="video/mp4">
-        <source src="assets/videos/background%20hero%20rumah%20toraja.mp4" type="video/mp4">
-        <source src="assets/videos/background hero rumah toraja.mp4" type="video/mp4">
-      </video>
+      <!-- Image Carousel Background Layar Penuh -->
+      <div id="heroBgCarousel" class="absolute inset-0 z-0 pointer-events-none">
+        <img src="assets/images/hero-panorama.jpg" alt="Panorama Alam Lembang Batualu Selatan" class="hero-bg-slide absolute inset-0 w-full h-full object-cover filter brightness-[0.45] contrast-[1.08] scale-105 opacity-100 transition-opacity duration-700">
+        <img src="assets/images/hero-pembangunan.jpg" alt="Pembangunan Infrastruktur Jalan Lembang Batualu Selatan" class="hero-bg-slide absolute inset-0 w-full h-full object-cover object-top filter brightness-[0.42] contrast-[1.08] scale-105 opacity-0 transition-opacity duration-700">
+        <img src="assets/images/hero-bantuan.webp" alt="Penyaluran Bantuan Warga Lembang Batualu Selatan" class="hero-bg-slide absolute inset-0 w-full h-full object-cover object-top filter brightness-[0.42] contrast-[1.08] scale-105 opacity-0 transition-opacity duration-700">
+      </div>
 
       <!-- Lapisan Gradien & Overlay Sinematik (Menjaga Kontras & Keterbacaan Teks) -->
       <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-emerald-950/85 to-slate-950/75 z-10"></div>
@@ -129,12 +129,12 @@
           <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-700/60 border border-emerald-500/40 text-emerald-200 text-xs font-semibold backdrop-blur-md">
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              Portal Resmi Pelayanan Terpadu Lembang Batualu Selatan
+              Kecamatan Sangalla Selatan &bull; Kabupaten Tana Toraja
             </div>
 
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-              Kearifan Budaya Toraja, <br>
-              <span class="text-emerald-300">Kemudahan Layanan Digital</span> untuk Semua Warga.
+              Portal Resmi Pelayanan Terpadu <br>
+              <span class="text-emerald-300">Lembang Batualu Selatan</span>
             </h1>
 
             <p class="text-slate-200 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light">
@@ -173,36 +173,50 @@
             </div>
           </div>
 
-          <!-- Hero Graphic Card / Visual Toraja Video Card -->
+          <!-- Hero Graphic Card / Visual Image Carousel -->
           <div class="lg:col-span-5">
             <div class="relative mx-auto max-w-md bg-white/10 dark:bg-slate-900/60 p-4 rounded-3xl border border-white/20 shadow-2xl backdrop-blur-xl">
-              <div class="overflow-hidden rounded-2xl h-64 relative group border border-white/10 shadow-inner">
-                <!-- Video Mini Player -->
-                <video id="heroMiniVideo" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700">
-                  <source src="assets/videos/hero-toraja.mp4" type="video/mp4">
-                  <source src="assets/videos/background%20hero%20rumah%20toraja.mp4" type="video/mp4">
-                </video>
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex items-end p-5">
+              <div id="heroCardCarousel" class="overflow-hidden rounded-2xl h-64 sm:h-72 relative group border border-white/10 shadow-inner">
+                <!-- Slide Foto Carousel -->
+                <img src="assets/images/hero-panorama.jpg" alt="Panorama Alam Lembang Batualu Selatan" class="hero-card-slide absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-700">
+                <img src="assets/images/hero-pembangunan.jpg" alt="Pembangunan Infrastruktur Jalan Lembang Batualu Selatan" class="hero-card-slide absolute inset-0 w-full h-full object-cover object-[center_25%] opacity-0 transition-opacity duration-700">
+                <img src="assets/images/hero-bantuan.webp" alt="Penyaluran Bantuan Pangan Warga Batualu Selatan" class="hero-card-slide absolute inset-0 w-full h-full object-cover object-[center_20%] opacity-0 transition-opacity duration-700">
+
+                <!-- Tombol Navigasi Prev / Next -->
+                <button id="heroPrevBtn" type="button" aria-label="Foto Sebelumnya" class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-slate-950/60 hover:bg-emerald-600 text-white flex items-center justify-center border border-white/20 backdrop-blur-sm transition">
+                  <i class="fas fa-chevron-left text-xs"></i>
+                </button>
+                <button id="heroNextBtn" type="button" aria-label="Foto Berikutnya" class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-slate-950/60 hover:bg-emerald-600 text-white flex items-center justify-center border border-white/20 backdrop-blur-sm transition">
+                  <i class="fas fa-chevron-right text-xs"></i>
+                </button>
+
+                <!-- Keterangan Slide -->
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent flex items-end p-5 z-10 pointer-events-none">
                   <div>
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-600/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase rounded-md tracking-wider mb-1">
-                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-ping"></span>
-                      Sinematik Budaya
+                    <span id="heroSlideBadge" class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-600/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase rounded-md tracking-wider mb-1">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-300"></span>
+                      Pesona Alam
                     </span>
-                    <h3 class="text-white font-bold text-base">Pesona Rumah Adat Toraja</h3>
-                    <p class="text-slate-300 text-xs">Arsitektur kearifan lokal di Lembang Batualu Selatan.</p>
+                    <h3 id="heroSlideTitle" class="text-white font-bold text-base">Panorama Lembang Batualu Selatan</h3>
+                    <p id="heroSlideDesc" class="text-slate-300 text-xs">Hamparan sawah terasering dan pegunungan sejuk Tana Toraja.</p>
                   </div>
                 </div>
               </div>
 
-              <!-- Tombol Kontrol Putar/Jeda Video -->
+              <!-- Tombol Kontrol Putar/Jeda & Indikator Carousel -->
               <div class="mt-4 flex items-center justify-between text-xs text-slate-300 px-1">
-                <button id="toggleHeroVideoBtn" type="button" aria-label="Jeda atau Putar Video" class="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white text-xs font-medium flex items-center gap-2 transition hover:scale-105">
-                  <i id="toggleHeroVideoIcon" class="fas fa-pause text-[11px] text-emerald-400"></i>
-                  <span id="toggleHeroVideoText">Jeda Video</span>
+                <button id="toggleHeroCarouselBtn" type="button" aria-label="Jeda atau Putar Slide Foto" class="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white text-xs font-medium flex items-center gap-2 transition hover:scale-105">
+                  <i id="toggleHeroCarouselIcon" class="fas fa-pause text-[11px] text-emerald-400"></i>
+                  <span id="toggleHeroCarouselText">Jeda Slide</span>
                 </button>
-                <span class="text-[11px] text-emerald-300 font-medium flex items-center gap-1">
-                  <i class="fas fa-film"></i> Video Latar Aktif
-                </span>
+                <div class="flex items-center gap-2">
+                  <div class="flex items-center gap-1.5" id="heroCarouselDots">
+                    <button type="button" data-slide="0" aria-label="Slide 1" class="hero-dot w-5 h-2 rounded-full bg-emerald-400 transition-all"></button>
+                    <button type="button" data-slide="1" aria-label="Slide 2" class="hero-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all"></button>
+                    <button type="button" data-slide="2" aria-label="Slide 3" class="hero-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all"></button>
+                  </div>
+                  <span id="heroSlideCounter" class="text-[11px] text-emerald-300 font-mono font-semibold ml-1">1/3</span>
+                </div>
               </div>
 
               <!-- Quick Info Badge -->

@@ -3,6 +3,16 @@ CHANGELOG - WEBSITE RESMI LEMBANG BATUALU SELATAN, TANA TORAJA
 Repositori: https://github.com/dog3n-tappy/website-batualu-selatan
 ================================================================================
 
+[v1.4.3] - 2026-11-26
+--------------------------------------------------------------------------------
+- Diperbarui (Hero Section):
+  * Latar belakang video dan mini-player video pada Hero diubah menjadi
+    Hero Image Carousel interaktif (latar belakang layar penuh + kartu foto
+    sinkron) menggunakan 3 foto dokumentasi Lembang Batualu Selatan
+    (assets/images/hero-panorama.jpg, hero-pembangunan.jpg, hero-bantuan.webp).
+  * Dilengkapi tombol Sebelumnya/Berikutnya, indikator slide, serta kontrol
+    Jeda/Putar otomatis (initHeroCarousel di js/app.js).
+
 [v1.4.2] - 2026-11-26
 --------------------------------------------------------------------------------
 - Diperbarui (Struktur Organisasi Pemerintah Lembang):

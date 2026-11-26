@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSocialDataCharts();
   initApbdChart();
   initSmoothScroll();
-  initHeroVideo();
+  initHeroCarousel();
 });
 
 function escapeHtml(value) {
@@ -737,47 +737,130 @@ function updateChartTheme(isDark) {
 }
 
 /* ==========================================================================
-   6. KONTROL VIDEO HERO BACKGROUND SINEMATIK
+   6. KONTROL HERO IMAGE CAROUSEL
    ========================================================================== */
-function initHeroVideo() {
-  const bgVideo = document.getElementById('heroVideo');
-  const miniVideo = document.getElementById('heroMiniVideo');
-  const toggleBtn = document.getElementById('toggleHeroVideoBtn');
-  const toggleIcon = document.getElementById('toggleHeroVideoIcon');
-  const toggleText = document.getElementById('toggleHeroVideoText');
+function initHeroCarousel() {
+  const bgSlides = document.querySelectorAll('.hero-bg-slide');
+  const cardSlides = document.querySelectorAll('.hero-card-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  const prevBtn = document.getElementById('heroPrevBtn');
+  const nextBtn = document.getElementById('heroNextBtn');
+  const toggleBtn = document.getElementById('toggleHeroCarouselBtn');
+  const toggleIcon = document.getElementById('toggleHeroCarouselIcon');
+  const toggleText = document.getElementById('toggleHeroCarouselText');
+  const slideBadge = document.getElementById('heroSlideBadge');
+  const slideTitle = document.getElementById('heroSlideTitle');
+  const slideDesc = document.getElementById('heroSlideDesc');
+  const slideCounter = document.getElementById('heroSlideCounter');
 
-  if (!bgVideo || !toggleBtn) return;
+  if (cardSlides.length === 0) return;
 
-  // Pastikan autoplay berjalan lancar di semua peramban
-  const ensurePlay = () => {
-    if (bgVideo.paused) {
-      bgVideo.play().catch(() => {});
+  const slidesMeta = [
+    {
+      badge: 'Pesona Alam',
+      title: 'Panorama Lembang Batualu Selatan',
+      desc: 'Hamparan sawah terasering dan pegunungan sejuk Tana Toraja.'
+    },
+    {
+      badge: 'Pembangunan Lembang',
+      title: 'Peningkatan Infrastruktur Jalan',
+      desc: 'Pembangunan akses jalan lembang untuk mobilitas dan ekonomi warga.'
+    },
+    {
+      badge: 'Pelayanan Sosial',
+      title: 'Penyaluran Bantuan Masyarakat',
+      desc: 'Distribusi bantuan pangan langsung bersama warga Batualu Selatan.'
     }
-    if (miniVideo && miniVideo.paused) {
-      miniVideo.play().catch(() => {});
-    }
-  };
-  
-  ensurePlay();
-  window.addEventListener('touchstart', ensurePlay, { once: true });
-  window.addEventListener('click', ensurePlay, { once: true });
+  ];
 
+  let currentIndex = 0;
   let isPlaying = true;
+  let intervalId = null;
 
-  toggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (isPlaying) {
-      bgVideo.pause();
-      if (miniVideo) miniVideo.pause();
-      if (toggleIcon) toggleIcon.className = 'fas fa-play text-[11px] text-emerald-400';
-      if (toggleText) toggleText.innerText = 'Putar Video';
-      isPlaying = false;
-    } else {
-      bgVideo.play().catch(() => {});
-      if (miniVideo) miniVideo.play().catch(() => {});
-      if (toggleIcon) toggleIcon.className = 'fas fa-pause text-[11px] text-emerald-400';
-      if (toggleText) toggleText.innerText = 'Jeda Video';
-      isPlaying = true;
+  function showSlide(index) {
+    currentIndex = (index + cardSlides.length) % cardSlides.length;
+
+    bgSlides.forEach((img, idx) => {
+      img.classList.toggle('opacity-100', idx === currentIndex);
+      img.classList.toggle('opacity-0', idx !== currentIndex);
+    });
+
+    cardSlides.forEach((img, idx) => {
+      img.classList.toggle('opacity-100', idx === currentIndex);
+      img.classList.toggle('opacity-0', idx !== currentIndex);
+    });
+
+    dots.forEach((dot, idx) => {
+      if (idx === currentIndex) {
+        dot.className = 'hero-dot w-5 h-2 rounded-full bg-emerald-400 transition-all';
+      } else {
+        dot.className = 'hero-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all';
+      }
+    });
+
+    const meta = slidesMeta[currentIndex] || slidesMeta[0];
+    if (slideBadge) {
+      slideBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-300"></span> ${escapeHtml(meta.badge)}`;
     }
+    if (slideTitle) slideTitle.textContent = meta.title;
+    if (slideDesc) slideDesc.textContent = meta.desc;
+    if (slideCounter) slideCounter.textContent = `${currentIndex + 1}/${cardSlides.length}`;
+  }
+
+  function startAutoSlide() {
+    stopAutoSlide();
+    intervalId = setInterval(() => {
+      showSlide(currentIndex + 1);
+    }, 5000);
+  }
+
+  function stopAutoSlide() {
+    if (intervalId) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      showSlide(currentIndex - 1);
+      if (isPlaying) startAutoSlide();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      showSlide(currentIndex + 1);
+      if (isPlaying) startAutoSlide();
+    });
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const targetIdx = Number(dot.getAttribute('data-slide'));
+      if (!Number.isNaN(targetIdx)) {
+        showSlide(targetIdx);
+        if (isPlaying) startAutoSlide();
+      }
+    });
   });
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        stopAutoSlide();
+        isPlaying = false;
+        if (toggleIcon) toggleIcon.className = 'fas fa-play text-[11px] text-emerald-400';
+        if (toggleText) toggleText.textContent = 'Putar Slide';
+      } else {
+        isPlaying = true;
+        startAutoSlide();
+        if (toggleIcon) toggleIcon.className = 'fas fa-pause text-[11px] text-emerald-400';
+        if (toggleText) toggleText.textContent = 'Jeda Slide';
+      }
+    });
+  }
+
+  showSlide(0);
+  startAutoSlide();
 }
