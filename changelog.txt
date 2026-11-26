@@ -3,6 +3,26 @@ CHANGELOG - WEBSITE RESMI LEMBANG BATUALU SELATAN, TANA TORAJA
 Repositori: https://github.com/dog3n-tappy/website-batualu-selatan
 ================================================================================
 
+[v1.4.2] - 2026-11-26
+--------------------------------------------------------------------------------
+- Diperbarui (Struktur Organisasi Pemerintah Lembang):
+  * Bagan kepengurusan Lembang Batualu Selatan diperbarui lengkap sesuai
+    bagan resmi: Kepala Lembang (Pradyan Rizky Londong Allo), BPL (P.G. Rempe),
+    Lembaga Kemasyarakatan, Sekretaris (Albertus P. Palan), Kaur Keuangan
+    (Rompe'), Kaur Umum (Sarni Barrung), Kaur Perencanaan dan Pelaporan
+    (Alisia Sa'buran), Kasi Pemerintahan (Agustina Leni), Kasi Pembangunan
+    (Yuliana Senga), Kasi Kemasyarakatan (Isma Melyani Inggrit), serta
+    4 Kepala Kampong (Katapi: Kurniawan Dana Putra Sallata; Buntu Toraya:
+    Ferdinand Sollu; Tamporan: Albertus Palan; Barua: Marten Minggu Paelongan).
+
+[v1.4.1] - 2026-11-26
+--------------------------------------------------------------------------------
+- Diperbarui:
+  * Seksi Lapor Pengaduan Warga (#pengaduan) dan tombol CTA Hero diubah
+    menjadi tombol CTA langsung WhatsApp Kepala Lembang (+62 822-5432-5707)
+    melalui deeplink https://wa.me/6282254325707 tanpa formulir pengaduan.
+  * Tautan WhatsApp di Hero dan Footer diperbarui ke +62 822-5432-5707.
+
 [v1.4.0] - 2026-11-26
 --------------------------------------------------------------------------------
 - Diperbarui (Data Profil Lembang Tahun 2026):
