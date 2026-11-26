@@ -3,6 +3,24 @@ CHANGELOG - WEBSITE RESMI LEMBANG BATUALU SELATAN, TANA TORAJA
 Repositori: https://github.com/dog3n-tappy/website-batualu-selatan
 ================================================================================
 
+[v1.4.0] - 2026-11-26
+--------------------------------------------------------------------------------
+- Diperbarui (Data Profil Lembang Tahun 2026):
+  * Luas wilayah resmi Lembang Batualu Selatan diperbarui menjadi 28,25 Km2.
+  * Visi dan 6 poin Misi Kepala Lembang disesuaikan dengan Dokumen RPJM Lembang
+    ("Pelayanan publik yang transparan, menuju masyarakat Batualu Selatan yang
+    Maju, Aman, Cerdas dan Sejahtera").
+  * Statistik demografi diperbarui: 1.799 jiwa (932 laki-laki, 867 perempuan).
+  * Pembagian wilayah diperbarui menjadi 4 Dusun (8 RT): Dusun Katapi, Dusun
+    Barua, Dusun Buntu Toraya, dan Dusun Tamporan beserta rincian RT/RW.
+  * Layanan Administrasi Surat Digital diperluas dari 4 menjadi 29 jenis surat
+    lengkap dengan direktori pencarian interaktif dan pilihan wilayah Dusun/RT.
+- Ditambahkan:
+  * Seksi baru Gambaran Umum Sosial Budaya (#data-lembang) berisi Tabel 1
+    Pertumbuhan Penduduk, Tabel 2 Pertumbuhan Angkatan Kerja (2022-2026),
+    Tabel 3 Tingkat Pendidikan, Tabel 4 Indikator Kesehatan (2021-2026),
+    serta visualisasi grafik Chart.js untuk kelompok umur dan pendidikan.
+
 [v1.3.0] - 2026-10-27
 --------------------------------------------------------------------------------
 - Diperbarui:
